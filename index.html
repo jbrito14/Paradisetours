@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sendero de Olas · Tour Playero Patilla & Copey</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    html, body {
+      height: 100%;
+      background: url('t.jpeg') no-repeat center center/cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Título personalizado con letras azules y borde negro */
+    .main-title {
+      font-size: 3.2rem; /* Tamaño más pequeño */
+      font-weight: 900;
+      text-align: center;
+      margin: 1em 0 0.5em;
+      user-select: none;
+      color: #00d4ff; /* Color azul sólido */
+      text-shadow: 
+        3px 3px 0 #000,
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000; /* Bordes negros */
+      letter-spacing: 3px;
+      padding: 10px 20px;
+      position: relative;
+      display: inline-block;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes titleGlow {
+      from {
+        text-shadow: 
+          3px 3px 0 #000,
+          -1px -1px 0 #000,  
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000,
+          0 0 10px rgba(0, 120, 215, 0.5);
+      }
+      to {
+        text-shadow: 
+          3px 3px 0 #000,
+          -1px -1px 0 #000,  
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000,
+          0 0 20px rgba(0, 120, 215, 0.8);
+      }
+    }
+
+    /* Subtítulos */
+    h1 {
+      font-size: 2.2rem;
+      margin: 2em 0 1em;
+      color: #00d4ff;
+      text-shadow: 1px 1px 6px #004054;
+      text-align: center;
+      animation: fadeInUp 1.2s ease forwards;
+      user-select: none;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    /* Galería e imágenes */
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 960px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .gallery img {
+      width: calc(20% - 16px); /* 5 imágenes por fila */
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgb(0 0 0 / 0.6);
+      object-fit: cover;
+      height: 180px;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 3px solid transparent;
+    }
+    .gallery img:hover, .gallery img:focus-visible {
+      outline: none;
+      border: 3px solid #00d4ff;
+      transform: scale(1.12);
+      box-shadow: 0 10px 28px rgb(0 212 255 / 1);
+      z-index: 10;
+    }
+
+    /* Sección info paquetes */
+    section.info-paquete {
+      background: rgba(0, 20, 35, 0.8);
+      max-width: 700px;
+      margin: 3em auto 5em;
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.40);
+      animation: fadeIn 1.8s ease forwards;
+      user-select: none;
+    }
+    section.info-paquete ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.2rem 2rem;
+      margin-top: 1rem;
+      padding-left: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #a3e7ffdd;
+    }
+    section.info-paquete ul li {
+      padding-left: 1.8rem;
+      position: relative;
+    }
+    section.info-paquete ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #00d4ff;
+      font-weight: 700;
+      font-size: 1.3rem;
+      line-height: 1;
+      top: 2px;
+    }
+    section.info-paquete .precio {
+      margin-top: 2.5rem;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #00d4ff;
+      text-align: center;
+      text-shadow: 1px 1px 6px #002e55;
+    }
+
+    /* Contact Icons Container */
+    .contact-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 25px;
+      z-index: 9999;
+      user-select: none;
+    }
+    .contact-icons a {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #0078d7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow:
+        0 0 12px #00c3ffaa,
+        0 0 24px #00c3ff77;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+    .contact-icons a:hover {
+      transform: scale(1.25);
+      box-shadow:
+        0 0 20px #00c3ffdd,
+        0 0 40px #00c3ffcc;
+      z-index: 10;
+    }
+    /* Floating animation */
+    .contact-icons a {
+      animation: floatAnim 3.2s ease-in-out infinite;
+    }
+    .contact-icons a:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .contact-icons a:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Icon styles - improved with white fill for contrast */
+    svg {
+      width: 28px;
+      height: 28px;
+      fill: #e0f7ff;
+      filter: drop-shadow(0 0 3px #00a3ffcc);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Modal overlay for image zoom */
+    #modalZoom {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      cursor: zoom-out;
+    }
+    #modalZoom img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.8);
+      user-select: none;
+      pointer-events: none;
+      animation: zoomInModal 0.5s ease forwards;
+    }
+    @keyframes zoomInModal {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .gallery img {
+        width: calc(33.333% - 13.33px); /* 3 imágenes por fila en tablets */
+        height: 150px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      section.info-paquete {
+        padding: 1.8rem 2.2rem;
+      }
+      section.info-paquete ul {
+        font-size: 1.1rem;
+      }
+      .main-title {
+        font-size: 2.8rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery img {
+        width: calc(50% - 10px); /* 2 imágenes por fila en móviles */
+        height: 140px;
+      }
+      section.info-paquete ul {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 1rem;
+      }
+      .contact-icons {
+        gap: 18px;
+      }
+      .contact-icons a {
+        width: 50px;
+        height: 50px;
+      }
+      .main-title {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-title" aria-label="Título principal elegante y animado">SENDERO DE OLAS</div>
+
+  <h1>Playa Patilla</h1>
+  <div class="gallery" aria-label="Galería de imágenes de Playa Patilla">
+    <img src="pq4.jpeg" alt="Vista panorámica de Playa Patilla con arena y mar" tabindex="0" />
+    <img src="pq2.jpeg" alt="Atardecer en Playa Patilla con palmeras" tabindex="0" />
+    <img src="pq3.jpeg" alt="Playa Patilla con aguas cristalinas y personas disfrutando" tabindex="0" />
+    <img src="pq.jpeg" alt="Playa Patilla vista desde el acantilado" tabindex="0" />
+    <img src="pq5.jpeg" alt="Playa Patilla con barcas en la orilla" tabindex="0" />
+  </div>
+
+  <h1>Playa Copey</h1>
+  <div class="gallery" aria-label="Galería de imágenes de Playa Copey">
+    <img src="img/copey1.jpg" alt="Playa Copey con arena blanca y rocas al fondo" tabindex="0" />
+    <img src="img/copey2.jpg" alt="Vista aérea de Playa Copey con mar azul claro" tabindex="0" />
+    <img src="img/copey3.jpg" alt="Playa Copey en día soleado con barcas en la arena" tabindex="0" />
+    <img src="img/copey4.jpg" alt="Playa Copey con vegetación tropical" tabindex="0" />
+    <img src="img/copey5.jpg" alt="Playa Copey al atardecer" tabindex="0" />
+  </div>
+
+  <section class="info-paquete" aria-label="Detalles del paquete turístico">
+    <h2>Incluye en el paquete turístico</h2>
+    <ul>
+      <li>Hospedaje confortable</li>
+      <li>Degustación de comida típica</li>
+      <li>Actividades en la playa</li>
+      <li>Transporte ida y vuelta</li>
+    </ul>
+    <div class="precio">Precio del paquete: <strong>$100</strong></div>
+  </section>
+
+  <!-- Contact Icons at bottom center -->
+  <div class="contact-icons" aria-label="Iconos de contacto WhatsApp, Instagram y Email">
+    <!-- WhatsApp -->
+    <a href="https://api.whatsapp.com/send?phone=+584160270335&text=Hola%20Valentina%2C%20me%20interesa%20saber%20m%C3%A1s%20informaci%C3%B3n%20con%20respecto%20a%20los%20paquetes" target="_blank" aria-label="Contactar por WhatsApp" rel="noopener noreferrer" title="WhatsApp">
+      <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893 0-3.189-1.248-6.189-3.515-8.444"/>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/tuusuario" target="_blank" aria-label="Redireccionar a Instagram" rel="noopener noreferrer" title="Instagram">
+      <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+    </a>
+
+    <!-- Gmail -->
+    <a href="mailto:tuemail@gmail.com?subject=Información%20Paquetes%20Tour%20Playero&body=Hola%20Valentina,%20me%20gustaría%20saber%20más%20sobre%20los%20paquetes%20de%20tour." aria-label="Enviar email a Valentina" title="Email">
+      <svg role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Modal Zoom -->
+  <div id="modalZoom" role="dialog" aria-modal="true" tabindex="-1" aria-label="Imagen ampliada">
+    <img src="" alt="" />
+  </div>
+
+  <script>
+    // Abrir modal para ampliar la imagen con teclado o clic
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const modal = document.getElementById('modalZoom');
+    const modalImg = modal.querySelector('img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => openModal(img));
+      img.addEventListener('keydown', e => { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openModal(img); } });
+    });
+
+    function openModal(img) {
+      modal.style.display = 'flex';
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.focus();
+      document.body.style.overflow = 'hidden'; // disable scroll behind modal
+    }
+
+    modal.addEventListener('click', () => closeModal());
+    modal.addEventListener('keydown', e => {
+      if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modalImg.src = '';
+      modalImg.alt = '';
+      document.body.style.overflow = ''; // enable scroll
+    }
+  </script>
+
+</body>
+</html>
