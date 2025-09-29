@@ -30,7 +30,7 @@
       text-align: center;
       margin: 1em 0 0.5em;
       user-select: none;
-      color: #00d4ff; /* Color azul sólido */
+      color: #0078d7; /* Color azul sólido */
       text-shadow: 
         3px 3px 0 #000,
         -1px -1px 0 #000,  
@@ -65,15 +65,22 @@
       }
     }
 
-    /* Subtítulos */
+    /* Subtítulos con bordes negros */
     h1 {
       font-size: 2.2rem;
       margin: 2em 0 1em;
       color: #00d4ff;
-      text-shadow: 1px 1px 6px #004054;
+      text-shadow: 
+        2px 2px 0 #000,
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px 1px 6px #004054; /* Mantiene la sombra original */
       text-align: center;
       animation: fadeInUp 1.2s ease forwards;
       user-select: none;
+      padding: 5px 15px;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px) }
@@ -285,6 +292,9 @@
         font-size: 2.2rem;
         letter-spacing: 2px;
       }
+      h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
@@ -294,11 +304,11 @@
 
   <h1>Playa Patilla</h1>
   <div class="gallery" aria-label="Galería de imágenes de Playa Patilla">
-    <img src="pq4.jpeg" alt="Vista panorámica de Playa Patilla con arena y mar" tabindex="0" />
-    <img src="pq2.jpeg" alt="Atardecer en Playa Patilla con palmeras" tabindex="0" />
-    <img src="pq3.jpeg" alt="Playa Patilla con aguas cristalinas y personas disfrutando" tabindex="0" />
-    <img src="pq.jpeg" alt="Playa Patilla vista desde el acantilado" tabindex="0" />
-    <img src="pq5.jpeg" alt="Playa Patilla con barcas en la orilla" tabindex="0" />
+    <img src="img/patilla1.jpg" alt="Vista panorámica de Playa Patilla con arena y mar" tabindex="0" />
+    <img src="img/patilla2.jpg" alt="Atardecer en Playa Patilla con palmeras" tabindex="0" />
+    <img src="img/patilla3.jpg" alt="Playa Patilla con aguas cristalinas y personas disfrutando" tabindex="0" />
+    <img src="img/patilla4.jpg" alt="Playa Patilla vista desde el acantilado" tabindex="0" />
+    <img src="img/patilla5.jpg" alt="Playa Patilla con barcas en la orilla" tabindex="0" />
   </div>
 
   <h1>Playa Copey</h1>
@@ -318,7 +328,7 @@
       <li>Actividades en la playa</li>
       <li>Transporte ida y vuelta</li>
     </ul>
-    <div class="precio">Precio del paquete: <strong>$100</strong></div>
+    <div class="precio">Precio total del paquete: <strong>$100 USD</strong></div>
   </section>
 
   <!-- Contact Icons at bottom center -->
